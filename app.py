@@ -15,14 +15,22 @@ usuarios = [
 @app.route('/users', methods=['GET'])
 def pegar_usuarios():
     return jsonify({'users': usuarios})
- 
-# Rota para Ana Maria Braga
+
+
 @app.route('/user/<numero>', methods=['GET'])
 def pegar_usuario(numero):
-    # numero = 4
     localNumber = int(numero)
  
     return jsonify({'users': usuarios[localNumber]})
+
+@app.route('/user/novo', methods = ['POST'])
+def criar_novo_usuario():
+    novo_usuario = request.json
+    print (novo_usuario)
+    return jsonify({
+        'user': novo_usuario,
+        'message': 'Usuario criado com sucesso!'
+    })
  
 if __name__ == '__main__':
     app.run(port=3000)
